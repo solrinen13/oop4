@@ -1,9 +1,12 @@
 package Drivers;
 
+import Cars.DriverLicenseException;
+
 public class DriverAllGroup {
     private final String fullName;
     private boolean driverLicense;
     private int workExperience;
+    protected String category;
 
     public DriverAllGroup(String fullName, boolean driverLicense, int workExperience) {
         this.fullName = fullName;
@@ -14,7 +17,7 @@ public class DriverAllGroup {
         return fullName;
     }
 
-    public boolean isDriverLicense() {
+    public boolean getDriverLicense() {
         return driverLicense;
     }
 
@@ -41,5 +44,28 @@ public class DriverAllGroup {
 
     public void refuelTheTransport() {
         System.out.println(getFullName() + " заправил транспорт.");
+    }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category)  {
+        if (category == null || category.isEmpty()) {
+            try {
+                throw new DriverLicenseException("Driver's licence category have to be specified" +
+                        " for the driver " + getFullName());
+            } catch (DriverLicenseException e) {
+                System.out.println(e.getMessage());
+            }
+        } else if (category.equals("B") || category.equals("C") || category.equals("D")) {
+            this.category = category;
+        } else {
+            try {
+                throw new DriverLicenseException("Driver's licence category have to be specified" +
+                        " for the driver " + getFullName());
+            } catch (DriverLicenseException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

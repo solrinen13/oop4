@@ -1,6 +1,6 @@
 package Cars;
 import java.util.Objects;
-public class Autopark implements Competing {
+public  class Autopark implements Competing {
 
     private static final String DEFAULT_VALUE = "default";
     private static final double DEFAULT_ENGINE_VOLUME = 8.0;
@@ -101,6 +101,9 @@ public class Autopark implements Competing {
     public void printType() {
 
     }
-
+    //исключения......................................................................................................
+    public  void passDiagnostics(){
+        System.out.println("Диагностика проведена");
+    }
 
 }

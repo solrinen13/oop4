@@ -2,15 +2,17 @@ package Cars;
 
 import Drivers.DriverB;
 
-public class Car<B extends DriverB> extends Autopark  {
+public class Car<B extends DriverB> extends Autopark {
     private B driver;
     private CarBodyType carBodyType;
+
     public Car(String brand, String model, double engineVolume, B driver) {
         super(brand, model, engineVolume);
         this.driver = driver;
     }
+
     public void printDriverStartingInformation() {
-        System.out.println("Водитель "+getDriver().getFullName() + " управляет автомобилем " + getBrand() + " " + getModel() +
+        System.out.println("Водитель " + getDriver().getFullName() + " управляет автомобилем " + getBrand() + " " + getModel() +
                 " и будет участвовать в заезде.");
     }
 
@@ -42,21 +44,20 @@ public class Car<B extends DriverB> extends Autopark  {
     @Override
     public void setPitStop(int amountOfPitStop) {
         super.setPitStop(amountOfPitStop);
-        System.out.println("Легковая машина "+getBrand()+getModel()+" совершила питстоп "+getPitStop()+" раз.");
+        System.out.println("Легковая машина " + getBrand() + getModel() + " совершила питстоп " + getPitStop() + " раз.");
     }
 
     @Override
     public void setBestLapTime(int minutesOfBestLapTime) {
         super.setBestLapTime(minutesOfBestLapTime);
-        System.out.println("Лучшее время легковой машины "+getBrand()+getModel()+" достигла "+getBestLapTime());
+        System.out.println("Лучшее время легковой машины " + getBrand() + getModel() + " достигла " + getBestLapTime());
     }
 
     @Override
     public void setMaxSpeed(int maxSpeed) {
         super.setMaxSpeed(maxSpeed);
-        System.out.println("Максимальная скорость легковой машины "+getBrand()+getModel()+" достигла "+getMaxSpeed());
+        System.out.println("Максимальная скорость легковой машины " + getBrand() + getModel() + " достигла " + getMaxSpeed());
     }
-
 
 
     @Override
@@ -68,7 +69,6 @@ public class Car<B extends DriverB> extends Autopark  {
     public void finishMove() {
         super.finishMove();
     }
-
 
 
     // кузов енум ..........................................................................................
@@ -92,6 +92,7 @@ public class Car<B extends DriverB> extends Autopark  {
         public String getRussianTranslate() {
             return russianTranslate;
         }
+
         @Override
         public String toString() {
             return "Тип кузова: " + getRussianTranslate();
@@ -115,15 +116,19 @@ public class Car<B extends DriverB> extends Autopark  {
             System.out.println("Тип транспортного средства: " + getCarBodyType().name() + " (" + getCarBodyType().toString() + ")");
         }
     }
+
     // тостринг...............................................................................................
-        @Override
+    @Override
     public String toString() {
         return
                 "brand='" + brand + '\'' +
                         ", model='" + model + '\'' +
                         ", engineVolume=" + engineVolume
-            +" Тип кузова: " + carBodyType;
+                        + " Тип кузова: " + carBodyType;
     }
 
-
+    @Override
+    public void passDiagnostics() {
+        super.passDiagnostics();
+    }
 }

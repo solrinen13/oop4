@@ -1,11 +1,12 @@
 import Cars.Bus;
 import Cars.Car;
 import Cars.Cargo_Car;
+import Cars.DriverLicenseException;
 import Drivers.DriverB;
 import Drivers.DriverC;
 import Drivers.DriverD;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DriverLicenseException {
         //Водители
         DriverB driverB1 = new DriverB("Stephan Filch", true, 10);
         DriverB driverB2 = new DriverB("Anthony White", true, 15);
@@ -62,7 +63,7 @@ public class Main {
         renaultMagnum.printDriverStartingInformation();*/
 
 
-        bmwI8.setCarBodyType(Car.CarBodyType.SEDAN);
+      /*  bmwI8.setCarBodyType(Car.CarBodyType.SEDAN);
         bmwI8.printType();
         ferrari488.printType();
         System.out.println("=========================================================================================");
@@ -70,7 +71,10 @@ public class Main {
         uralNext.printType();
         System.out.println("=========================================================================================");
         maz5433.setTruckCapacityType(Cargo_Car.TruckCapacityType.N2);
-        maz5433.printType();
+        maz5433.printType();*/
 
+
+        driverB1.setCategory("B");
+        System.out.println(driverB1.getCategory());
     }
 }

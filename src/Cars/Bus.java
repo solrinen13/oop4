@@ -120,6 +120,12 @@ public class Bus <D extends DriverD> extends Autopark {
             System.out.println("Тип транспортного средства: " + getBusCapacity().name() + " (" + getBusCapacity().toString() + ")");
         }
     }
+
+    @Override
+    public void passDiagnostics() {
+        System.out.println("Автобусы не проходят диагностику!!!");
+    }
+
     @Override
     public String toString() {
         return

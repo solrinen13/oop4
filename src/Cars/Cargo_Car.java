@@ -122,4 +122,10 @@ public class Cargo_Car<C extends DriverC> extends Autopark  {
                         ", model='" + model + '\'' +
                         ", engineVolume=" + engineVolume;
     }
+
+    @Override
+    public void passDiagnostics() {
+        super.passDiagnostics();
+    }
+
 }
