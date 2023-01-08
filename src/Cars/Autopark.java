@@ -97,6 +97,10 @@ public class Autopark implements Competing {
         this.maxSpeed = validateIntegerArgument(maxSpeed);
     }
 
+    @Override
+    public void printType() {
+
+    }
 
 
 }

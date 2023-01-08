@@ -5,6 +5,7 @@ import Drivers.DriverD;
 
 public class Cargo_Car<C extends DriverC> extends Autopark  {
     private C driver;
+    private TruckCapacityType truckCapacityType;
     public Cargo_Car(String brand, String model, double engineVolume, C driver) {
         super(brand, model, engineVolume);
         this.driver = driver;
@@ -64,7 +65,56 @@ public class Cargo_Car<C extends DriverC> extends Autopark  {
     public void finishMove() {
         super.finishMove();
     }
+    public enum TruckCapacityType {
 
+        N1(0, 3.5f),
+        N2(3.5f, 12),
+        N3(12, 0);
+        private final float lowerLimit;
+        private final float upperLimit;
+        TruckCapacityType(float lowerLimit, float upperLimit) {
+            if (lowerLimit >= 0 && upperLimit >= 0) {
+                this.lowerLimit = lowerLimit;
+                this.upperLimit = upperLimit;
+            } else {
+                throw new IllegalArgumentException("Limits should be positive");
+            }
+        }
+        public float getLowerLimit() {
+            return lowerLimit;
+        }
+
+        public float getUpperLimit() {
+            return upperLimit;
+        }
+        @Override
+        public String toString() {
+            if (lowerLimit == 0) {
+                return "Грузоподъемность: до " + getUpperLimit() + " тонн";
+            } else if (upperLimit == 0) {
+                return "Грузоподъемность: свыше " + getLowerLimit() + " тонн";
+            } else {
+                return "Грузоподъемность: от " + getLowerLimit() + " до " + getUpperLimit() + " тонн";
+            }
+        }
+    }
+
+    public TruckCapacityType getTruckCapacityType() {
+        return truckCapacityType;
+    }
+
+    public void setTruckCapacityType(TruckCapacityType truckCapacityType) {
+        this.truckCapacityType = truckCapacityType;
+    }
+    @Override
+    public void printType() {
+        super.printType();
+        if (truckCapacityType == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println("Тип транспортного средства: " + getTruckCapacityType().name() + " (" + getTruckCapacityType().toString() + ")");
+        }
+    }
     @Override
     public String toString() {
         return

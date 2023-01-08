@@ -4,6 +4,7 @@ import Drivers.DriverB;
 
 public class Car<B extends DriverB> extends Autopark  {
     private B driver;
+    private CarBodyType carBodyType;
     public Car(String brand, String model, double engineVolume, B driver) {
         super(brand, model, engineVolume);
         this.driver = driver;
@@ -68,12 +69,60 @@ public class Car<B extends DriverB> extends Autopark  {
         super.finishMove();
     }
 
+
+
+    // кузов енум ..........................................................................................
+    public enum CarBodyType {
+
+        SEDAN("Седан"),
+        HATCHBACK("Хетчбек"),
+        COUPE("Купе"),
+        STATION_WAGON("Универсал"),
+        SPORT_UTILITY_VEHICLE("Внедорожник"),
+        CROSSOVER("Кроссовер"),
+        PICKUP("Пикап"),
+        VAN("Фургон"),
+        MINIVAN("Минивэн");
+        private final String russianTranslate;
+
+        CarBodyType(String russianTranslate) {
+            this.russianTranslate = russianTranslate;
+        }
+
+        public String getRussianTranslate() {
+            return russianTranslate;
+        }
+        @Override
+        public String toString() {
+            return "Тип кузова: " + getRussianTranslate();
+        }
+    }
+
+    public CarBodyType getCarBodyType() {
+        return carBodyType;
+    }
+
+    public void setCarBodyType(CarBodyType carBodyType) {
+        this.carBodyType = carBodyType;
+    }
+
     @Override
+    public void printType() {
+        super.printType();
+        if (carBodyType == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println("Тип транспортного средства: " + getCarBodyType().name() + " (" + getCarBodyType().toString() + ")");
+        }
+    }
+    // тостринг...............................................................................................
+        @Override
     public String toString() {
         return
                 "brand='" + brand + '\'' +
                         ", model='" + model + '\'' +
-                        ", engineVolume=" + engineVolume;
+                        ", engineVolume=" + engineVolume
+            +" Тип кузова: " + carBodyType;
     }
 
 

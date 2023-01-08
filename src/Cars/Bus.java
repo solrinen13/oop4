@@ -6,6 +6,7 @@ import com.sun.jdi.connect.Transport;
 
 public class Bus <D extends DriverD> extends Autopark {
     private D driver;
+    private BusCapacity busCapacity;
     public Bus(String brand, String model, double engineVolume, D driver) {
         super(brand, model, engineVolume);
         this.driver = driver;
@@ -68,7 +69,57 @@ public class Bus <D extends DriverD> extends Autopark {
     public void finishMove() {
         super.finishMove();
     }
+    //енум..............................................................................................................
+    public enum BusCapacity{
+        ESPECIALLY_SMALL(0, 10),
+        SMALL(0, 25),
+        AVERAGE(40, 50),
+        LARGE(60, 80),
+        ESPECIALLY_LARGE(100, 120);
+        private final Integer lowerLimit;
+        private final Integer upperLimit;
+        BusCapacity(Integer lowerLimit, Integer upperLimit) {
+            if (lowerLimit >= 0 && upperLimit >= 0) {
+                this.lowerLimit = lowerLimit;
+                this.upperLimit = upperLimit;
+            } else {
+                throw new IllegalArgumentException("Limits should be positive");
+            }
+        }
+        public int getLowerLimit() {
+            return lowerLimit;
+        }
 
+        public int getUpperLimit() {
+            return upperLimit;
+        }
+        @Override
+        public String toString() {
+            if (lowerLimit == 0) {
+                return "Вместимость: до " + getUpperLimit() + " мест";
+            } else {
+                return "Вместимость: " + getLowerLimit() + " - " + getUpperLimit() + " мест";
+            }
+        }
+    }
+
+    public void setBusBodyType(Bus.BusCapacity busCapacity) {
+        this.busCapacity = busCapacity;
+    }
+
+    public BusCapacity getBusCapacity() {
+        return busCapacity;
+    }
+
+    @Override
+    public void printType() {
+        super.printType();
+        if (busCapacity == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println("Тип транспортного средства: " + getBusCapacity().name() + " (" + getBusCapacity().toString() + ")");
+        }
+    }
     @Override
     public String toString() {
         return

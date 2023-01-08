@@ -4,7 +4,6 @@ import Cars.Cargo_Car;
 import Drivers.DriverB;
 import Drivers.DriverC;
 import Drivers.DriverD;
-
 public class Main {
     public static void main(String[] args) {
         //Водители
@@ -43,7 +42,7 @@ public class Main {
 
 
 
-        bmwI8.printDriverStartingInformation();
+    /*    bmwI8.printDriverStartingInformation();
         ferrari488.printDriverStartingInformation();
         mercedesAmgGt.printDriverStartingInformation();
         jaguarXK.printDriverStartingInformation();
@@ -60,6 +59,18 @@ public class Main {
         maz5433.printDriverStartingInformation();
         gazelNext.printDriverStartingInformation();
         maz6312.printDriverStartingInformation();
-        renaultMagnum.printDriverStartingInformation();
+        renaultMagnum.printDriverStartingInformation();*/
+
+
+        bmwI8.setCarBodyType(Car.CarBodyType.SEDAN);
+        bmwI8.printType();
+        ferrari488.printType();
+        System.out.println("=========================================================================================");
+        uralNext.setBusBodyType(Bus.BusCapacity.LARGE);
+        uralNext.printType();
+        System.out.println("=========================================================================================");
+        maz5433.setTruckCapacityType(Cargo_Car.TruckCapacityType.N2);
+        maz5433.printType();
+
     }
 }
