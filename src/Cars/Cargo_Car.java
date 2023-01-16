@@ -2,12 +2,16 @@ package Cars;
 
 import Drivers.DriverC;
 import Drivers.DriverD;
+import Mechanics.MechanicSkills;
+import Mechanics.MechanicsTeam;
+
+import java.util.List;
 
 public class Cargo_Car<C extends DriverC> extends Autopark  {
     private C driver;
     private TruckCapacityType truckCapacityType;
-    public Cargo_Car(String brand, String model, double engineVolume, C driver) {
-        super(brand, model, engineVolume);
+    public Cargo_Car(String brand, String model, double engineVolume, List<MechanicsTeam> mechanic, C driver) {
+        super(brand, model, engineVolume,mechanic);
         this.driver = driver;
     }
     public void printDriverStartingInformation() {
@@ -128,4 +132,26 @@ public class Cargo_Car<C extends DriverC> extends Autopark  {
         super.passDiagnostics();
     }
 
+
+
+    @Override
+    public void performMaintenance(List<MechanicsTeam> mechanics) {
+        System.out.println("Грузовик " + getBrand() + " " + getModel() + ", объем двигателя " + getEngineVolume());
+        for (MechanicsTeam value : mechanics) {
+            if (value.getMechanicSkills() == MechanicSkills.REPAIR_TRUCK || value.getAbilityToWorkCars() == MechanicSkills.REPAIR_UNIVERSAL) {
+                System.out.println("- обслуживает " + value);
+            }
+        }
+
+    }
+
+    @Override
+    public void repairCar(List<MechanicsTeam> mechanics) {
+        System.out.println("Грузовик " + getBrand() + " " + getModel() + ", объем двигателя " + getEngineVolume());
+        for (MechanicsTeam value : mechanics) {
+            if (value.getMechanicSkills() == MechanicSkills.REPAIR_TRUCK || value.getAbilityToWorkCars() == MechanicSkills.REPAIR_UNIVERSAL) {
+                System.out.println("- отремонтировал " + value);
+            }
+        }
+    }
 }

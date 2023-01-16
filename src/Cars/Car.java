@@ -1,13 +1,17 @@
 package Cars;
 
 import Drivers.DriverB;
+import Mechanics.MechanicSkills;
+import Mechanics.MechanicsTeam;
+
+import java.util.List;
 
 public class Car<B extends DriverB> extends Autopark {
     private B driver;
     private CarBodyType carBodyType;
 
-    public Car(String brand, String model, double engineVolume, B driver) {
-        super(brand, model, engineVolume);
+    public Car(String brand, String model, double engineVolume, List<MechanicsTeam> mechanic,  B driver) {
+        super(brand, model, engineVolume,mechanic);
         this.driver = driver;
     }
 
@@ -130,5 +134,26 @@ public class Car<B extends DriverB> extends Autopark {
     @Override
     public void passDiagnostics() {
         super.passDiagnostics();
+    }
+
+    @Override
+    public void performMaintenance(List<MechanicsTeam> mechanics) {
+        System.out.println("Автомобиль " + getBrand() + " " + getModel() + ", объем двигателя " + getEngineVolume());
+        for (MechanicsTeam value : mechanics) {
+            if (value.getMechanicSkills() == MechanicSkills.REPAIR_CARS || value.getAbilityToWorkCars() == MechanicSkills.REPAIR_UNIVERSAL) {
+                System.out.println("- обслуживает " + value);
+            }
+        }
+
+    }
+
+    @Override
+    public void repairCar(List<MechanicsTeam> mechanics) {
+        System.out.println("Автомобиль " + getBrand() + " " + getModel() + ", объем двигателя " + getEngineVolume());
+        for (MechanicsTeam value : mechanics) {
+            if (value.getMechanicSkills() == MechanicSkills.REPAIR_CARS || value.getAbilityToWorkCars() == MechanicSkills.REPAIR_UNIVERSAL) {
+                System.out.println("- отремонтировал " + value);
+            }
+        }
     }
 }

@@ -1,12 +1,31 @@
-import Cars.Bus;
-import Cars.Car;
-import Cars.Cargo_Car;
-import Cars.DriverLicenseException;
+import Cars.*;
+import Drivers.DriverAllGroup;
 import Drivers.DriverB;
 import Drivers.DriverC;
 import Drivers.DriverD;
+import Mechanics.MechanicSkills;
+import Mechanics.MechanicsTeam;
+
+import java.sql.Driver;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) throws DriverLicenseException {
+
+        List<MechanicsTeam> mechanicList = new ArrayList<>();
+        MechanicsTeam mechanic1 = new MechanicsTeam("Vladimir", " Neciforov ", "Truck Repair Company", MechanicSkills.REPAIR_TRUCK);
+        MechanicsTeam mechanic2 = new MechanicsTeam("Vadim", "Vadimov", "BusRepairHelp", MechanicSkills.REPAIR_BUS);
+        MechanicsTeam mechanic3 = new MechanicsTeam("Rosco", "Ros", "oooAutoRepair", MechanicSkills.REPAIR_UNIVERSAL);
+        MechanicsTeam mechanic4 = new MechanicsTeam("Reno", "Li", "Bars Auto", MechanicSkills.REPAIR_CARS);
+        mechanicList.add(mechanic1);
+        mechanicList.add(mechanic2);
+        mechanicList.add(mechanic3);
+        mechanicList.add(mechanic4);
+        //mechanicList.forEach(System.out::println);
+
+
+        ArrayList<DriverAllGroup> driverList = new ArrayList<>();
         //Водители
         DriverB driverB1 = new DriverB("Stephan Filch", true, 10);
         DriverB driverB2 = new DriverB("Anthony White", true, 15);
@@ -23,26 +42,65 @@ public class Main {
         DriverD driverD3 = new DriverD("Todd Coward", true, 5);
         DriverD driverD4 = new DriverD("Vadim Smirnov", true, 14);
 
+        driverList.add(driverB1);
+        driverList.add(driverB2);
+        driverList.add(driverB3);
+        driverList.add(driverB4);
+
+        driverList.add(driverC1);
+        driverList.add(driverC2);
+        driverList.add(driverC3);
+        driverList.add(driverC4);
+
+        driverList.add(driverD1);
+        driverList.add(driverD2);
+        driverList.add(driverD3);
+        driverList.add(driverD4);
+
+
+        //почему не выводит значение?
+       /* for (int i = 0; i < 12; i++) {
+            System.out.println(driverList.get(i));
+        }*/
+
+        ArrayList<Autopark> allCars = new ArrayList<>();
         //легковые
-        Car <DriverB> bmwI8 = new Car("BMW","i8",1.5,driverB1);
-        Car <DriverB> ferrari488 = new Car("Ferrari","488",4,driverB2);
-        Car <DriverB> mercedesAmgGt = new Car("Mercedes","AMG GT",3,driverB3);
-        Car <DriverB> jaguarXK = new Car("Jaguar","XK",3.5,driverB4);
-
+        Car <DriverB> car1 = new Car("BMW","i8",1.5, mechanicList,driverB1);
+        Car <DriverB> car2 = new Car("Ferrari","488",4,mechanicList, driverB2);
+        Car <DriverB> car3 = new Car("Mercedes","AMG GT",3,mechanicList, driverB3);
+        Car <DriverB> car4 = new Car("Jaguar","XK",3.5, mechanicList, driverB4);
+        System.out.println(car1);
         //Автобусы
-        Bus <DriverD>  uralNext = new Bus("Ural","Next",6,driverD1);
-        Bus <DriverD> paz3206 = new Bus("Paz","3206",5,driverD2);
-        Bus <DriverD> mercedesT1408D = new Bus("Mercedes","T1 408D",5,driverD3);
-        Bus <DriverD> gaz = new Bus("Gaz","322132",5.5,driverD4);
-
+        Bus <DriverD>  bus1 = new Bus("Ural","Next",6,mechanicList,driverD1);
+        Bus <DriverD> bus2 = new Bus("Paz","3206",5,mechanicList,driverD2);
+        Bus <DriverD> bus3 = new Bus("Mercedes","T1 408D",5,mechanicList,driverD3);
+        Bus <DriverD> bus4 = new Bus("Gaz","322132",5.5,mechanicList,driverD4);
         //Cargo
-        Cargo_Car <DriverC> maz5433 = new Cargo_Car("Maz","5433",11,driverC1);
-        Cargo_Car <DriverC> gazelNext = new Cargo_Car("Gazel","Next",9,driverC2);
-        Cargo_Car <DriverC> maz6312 = new Cargo_Car("Maz","6312",12,driverC3);
-        Cargo_Car <DriverC> renaultMagnum = new Cargo_Car("Renault","Magnum",15,driverC4);
+        Cargo_Car <DriverC> cargo1 = new Cargo_Car("Maz","5433",11,mechanicList,driverC1);
+        Cargo_Car <DriverC> cargo2 = new Cargo_Car("Gazel","Next",9,mechanicList,driverC2);
+        Cargo_Car <DriverC> cargo3 = new Cargo_Car("Maz","6312",12,mechanicList,driverC3);
+        Cargo_Car <DriverC> cargo4 = new Cargo_Car("Renault","Magnum",15,mechanicList,driverC4);
 
+        allCars.add(car1);
+        allCars.add(car2);
+        allCars.add(car3);
+        allCars.add(car4);
 
+        allCars.add(bus1);
+        allCars.add(bus2);
+        allCars.add(bus3);
+        allCars.add(bus4);
 
+        allCars.add(cargo1);
+        allCars.add(cargo2);
+        allCars.add(cargo3);
+        allCars.add(cargo4);
+       // allCars.forEach ( System.out::println );
+
+        car1.performMaintenance(mechanicList);
+        //car1.repairCar(mechanicList);
+        System.out.println("Данные о водителе автомобиля " + car1.getDriver());
+       // Напишите программу, с помощью которой можно узнать, как зовут водителя авто, какие механики у нее есть.
     /*    bmwI8.printDriverStartingInformation();
         ferrari488.printDriverStartingInformation();
         mercedesAmgGt.printDriverStartingInformation();
@@ -74,7 +132,7 @@ public class Main {
         maz5433.printType();*/
 
 
-        driverB1.setCategory("B");
-        System.out.println(driverB1.getCategory());
+      /*  driverB1.setCategory("B");
+        System.out.println(driverB1.getCategory());*/
     }
 }

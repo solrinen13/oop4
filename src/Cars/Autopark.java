@@ -1,4 +1,7 @@
 package Cars;
+import Mechanics.MechanicsTeam;
+
+import java.util.List;
 import java.util.Objects;
 public  class Autopark implements Competing {
 
@@ -11,11 +14,12 @@ public  class Autopark implements Competing {
     private int minutesOfBestLapTime;
     private int maxSpeed;
 
-
-    public Autopark(String brand, String model, double engineVolume) {
+    List<MechanicsTeam> mechanic;
+    public Autopark(String brand, String model, double engineVolume, List<MechanicsTeam> mechanic) {
         this.brand = validateStringArgument(brand);
         this.model = validateStringArgument(model);
         this.engineVolume = validateEngineVolumeArgument(engineVolume);
+        this.mechanic = mechanic;
     }
 
     public String getBrand() {
@@ -101,6 +105,16 @@ public  class Autopark implements Competing {
     public void printType() {
 
     }
+
+
+    public void performMaintenance(List<MechanicsTeam> mechanics) {
+
+    }
+
+    public void repairCar(List<MechanicsTeam> mechanics) {
+
+    }
+
     //исключения......................................................................................................
     public  void passDiagnostics(){
         System.out.println("Диагностика проведена");

@@ -68,4 +68,13 @@ public class DriverAllGroup {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "fullName='" + fullName +
+                ", driverLicense=" + driverLicense +
+                ", workExperience=" + workExperience +
+                ", category='" + category
+                ;
+    }
 }

@@ -2,13 +2,15 @@ package Cars;
 
 
 import Drivers.DriverD;
-import com.sun.jdi.connect.Transport;
+import Mechanics.MechanicSkills;
+import Mechanics.MechanicsTeam;
+import java.util.List;
 
 public class Bus <D extends DriverD> extends Autopark {
     private D driver;
     private BusCapacity busCapacity;
-    public Bus(String brand, String model, double engineVolume, D driver) {
-        super(brand, model, engineVolume);
+    public Bus(String brand, String model, double engineVolume, List<MechanicsTeam> mechanic, D driver) {
+        super(brand, model, engineVolume,mechanic);
         this.driver = driver;
     }
 
@@ -134,5 +136,24 @@ public class Bus <D extends DriverD> extends Autopark {
                         ", engineVolume=" + engineVolume;
     }
 
+    @Override
+    public void performMaintenance(List<MechanicsTeam> mechanics) {
+        System.out.println("Автобус " + getBrand() + " " + getModel() + ", объем двигателя " + getEngineVolume());
+        for (MechanicsTeam value : mechanics) {
+            if (value.getMechanicSkills() == MechanicSkills.REPAIR_CARS || value.getAbilityToWorkCars() == MechanicSkills.REPAIR_UNIVERSAL) {
+                System.out.println("- обслуживает " + value);
+            }
+        }
 
+    }
+
+    @Override
+    public void repairCar(List<MechanicsTeam> mechanics) {
+        System.out.println("Автобус " + getBrand() + " " + getModel() + ", объем двигателя " + getEngineVolume());
+        for (MechanicsTeam value : mechanics) {
+            if (value.getMechanicSkills() == MechanicSkills.REPAIR_BUS || value.getAbilityToWorkCars() == MechanicSkills.REPAIR_UNIVERSAL) {
+                System.out.println("- отремонтировал " + value);
+            }
+        }
+    }
 }
