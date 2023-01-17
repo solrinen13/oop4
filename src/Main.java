@@ -6,23 +6,26 @@ import Drivers.DriverD;
 import Mechanics.MechanicSkills;
 import Mechanics.MechanicsTeam;
 
+
 import java.sql.Driver;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Cars.Autopark.*;
+
 public class Main {
     public static void main(String[] args) throws DriverLicenseException {
 
-        List<MechanicsTeam> mechanicList = new ArrayList<>();
+       // List<MechanicsTeam> mechanicList = new ArrayList<>();
         MechanicsTeam mechanic1 = new MechanicsTeam("Vladimir", " Neciforov ", "Truck Repair Company", MechanicSkills.REPAIR_TRUCK);
         MechanicsTeam mechanic2 = new MechanicsTeam("Vadim", "Vadimov", "BusRepairHelp", MechanicSkills.REPAIR_BUS);
         MechanicsTeam mechanic3 = new MechanicsTeam("Rosco", "Ros", "oooAutoRepair", MechanicSkills.REPAIR_UNIVERSAL);
         MechanicsTeam mechanic4 = new MechanicsTeam("Reno", "Li", "Bars Auto", MechanicSkills.REPAIR_CARS);
-        mechanicList.add(mechanic1);
-        mechanicList.add(mechanic2);
-        mechanicList.add(mechanic3);
-        mechanicList.add(mechanic4);
-        //mechanicList.forEach(System.out::println);
+        //mechanicList.add(MechanicsTeam mechanic1);
+        addMechanic(mechanic1);
+        addMechanic( mechanic2);
+        addMechanic(mechanic3);
+        addMechanic(mechanic4);
 
 
         ArrayList<DriverAllGroup> driverList = new ArrayList<>();
@@ -98,8 +101,12 @@ public class Main {
        // allCars.forEach ( System.out::println );
 
         car1.performMaintenance(mechanicList);
+        bus1.performMaintenance(mechanicList);
         //car1.repairCar(mechanicList);
         System.out.println("Данные о водителе автомобиля " + car1.getDriver());
+        driverB1.setCategory("B");
+        System.out.println("Данные о водителе автомобиля " + bus1.getDriver());
+        printMechanicList();
        // Напишите программу, с помощью которой можно узнать, как зовут водителя авто, какие механики у нее есть.
     /*    bmwI8.printDriverStartingInformation();
         ferrari488.printDriverStartingInformation();
@@ -134,5 +141,11 @@ public class Main {
 
       /*  driverB1.setCategory("B");
         System.out.println(driverB1.getCategory());*/
+
+
+
     }
+
+
+
 }

@@ -12,6 +12,7 @@ public class DriverAllGroup {
         this.fullName = fullName;
         this.driverLicense = driverLicense;
         this.workExperience = workExperience;
+
     }
     public String getFullName() {
         return fullName;

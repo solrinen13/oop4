@@ -112,7 +112,6 @@ public class Cargo_Car<C extends DriverC> extends Autopark  {
     }
     @Override
     public void printType() {
-        super.printType();
         if (truckCapacityType == null) {
             System.out.println("Данных по транспортному средству недостаточно");
         } else {

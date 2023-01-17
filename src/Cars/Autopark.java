@@ -1,9 +1,10 @@
 package Cars;
 import Mechanics.MechanicsTeam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-public  class Autopark implements Competing {
+public abstract class Autopark implements Competing {
 
     private static final String DEFAULT_VALUE = "default";
     private static final double DEFAULT_ENGINE_VOLUME = 8.0;
@@ -14,12 +15,16 @@ public  class Autopark implements Competing {
     private int minutesOfBestLapTime;
     private int maxSpeed;
 
-    List<MechanicsTeam> mechanic;
+    public static List<MechanicsTeam> mechanicList = new ArrayList<>();;
     public Autopark(String brand, String model, double engineVolume, List<MechanicsTeam> mechanic) {
         this.brand = validateStringArgument(brand);
         this.model = validateStringArgument(model);
         this.engineVolume = validateEngineVolumeArgument(engineVolume);
-        this.mechanic = mechanic;
+        this.mechanicList = mechanic;
+    }
+
+    public List<MechanicsTeam> getMechanic() {
+        return mechanicList;
     }
 
     public String getBrand() {
@@ -102,22 +107,24 @@ public  class Autopark implements Competing {
     }
 
     @Override
-    public void printType() {
-
-    }
+    public abstract void printType();
 
 
-    public void performMaintenance(List<MechanicsTeam> mechanics) {
+    public abstract void performMaintenance(List<MechanicsTeam> mechanics);
 
-    }
-
-    public void repairCar(List<MechanicsTeam> mechanics) {
-
-    }
+    public abstract void repairCar(List<MechanicsTeam> mechanics);
 
     //исключения......................................................................................................
     public  void passDiagnostics(){
         System.out.println("Диагностика проведена");
     }
 
+    public static void addMechanic (MechanicsTeam mechanic){
+        mechanicList.add(mechanic);
+
+    }
+    public static void printMechanicList (){
+        mechanicList.forEach(System.out::println);
+
+    }
 }

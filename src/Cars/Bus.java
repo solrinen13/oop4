@@ -9,8 +9,8 @@ import java.util.List;
 public class Bus <D extends DriverD> extends Autopark {
     private D driver;
     private BusCapacity busCapacity;
-    public Bus(String brand, String model, double engineVolume, List<MechanicsTeam> mechanic, D driver) {
-        super(brand, model, engineVolume,mechanic);
+    public Bus(String brand, String model, double engineVolume, List<MechanicsTeam> getMechanic, D driver) {
+        super(brand, model, engineVolume,getMechanic);
         this.driver = driver;
     }
 
@@ -115,7 +115,6 @@ public class Bus <D extends DriverD> extends Autopark {
 
     @Override
     public void printType() {
-        super.printType();
         if (busCapacity == null) {
             System.out.println("Данных по транспортному средству недостаточно");
         } else {

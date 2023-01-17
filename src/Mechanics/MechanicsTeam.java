@@ -3,6 +3,7 @@ package Mechanics;
 import Cars.Autopark;
 
 import java.util.Objects;
+import java.util.List;
 
 public class MechanicsTeam {
     private final String firstName;
@@ -40,6 +41,7 @@ public class MechanicsTeam {
         }
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,6 +58,8 @@ public class MechanicsTeam {
     public MechanicSkills getMechanicSkills() {
         return mechanicSkills;
     }
+
+
     @Override
     public String toString() {
         return getLastName() + " " + getFirstName() + " из компании: " +

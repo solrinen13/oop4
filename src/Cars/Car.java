@@ -113,7 +113,6 @@ public class Car<B extends DriverB> extends Autopark {
 
     @Override
     public void printType() {
-        super.printType();
         if (carBodyType == null) {
             System.out.println("Данных по транспортному средству недостаточно");
         } else {
