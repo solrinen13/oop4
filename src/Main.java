@@ -9,7 +9,9 @@ import Mechanics.MechanicsTeam;
 
 import java.sql.Driver;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static Cars.Autopark.*;
 
@@ -72,7 +74,7 @@ public class Main {
         Car <DriverB> car2 = new Car("Ferrari","488",4,mechanicList, driverB2);
         Car <DriverB> car3 = new Car("Mercedes","AMG GT",3,mechanicList, driverB3);
         Car <DriverB> car4 = new Car("Jaguar","XK",3.5, mechanicList, driverB4);
-        System.out.println(car1);
+       // System.out.println(car1);
         //Автобусы
         Bus <DriverD>  bus1 = new Bus("Ural","Next",6,mechanicList,driverD1);
         Bus <DriverD> bus2 = new Bus("Paz","3206",5,mechanicList,driverD2);
@@ -98,15 +100,32 @@ public class Main {
         allCars.add(cargo2);
         allCars.add(cargo3);
         allCars.add(cargo4);
+
+        Map<Autopark, MechanicsTeam> mechanicMap = new HashMap<>();
+        mechanicMap.put(cargo1,mechanic1);
+        mechanicMap.put(cargo2,mechanic3);
+        mechanicMap.put(cargo3,mechanic3);
+        mechanicMap.put(cargo4,mechanic1);
+        mechanicMap.put(cargo1,mechanic1);
+
+        //System.out.println(mechanicMap.get(cargo1));
+        for (Map.Entry<Autopark, MechanicsTeam> entry : mechanicMap.entrySet()) {
+            System.out.println(entry.getKey().getBrand() + " " + entry.getKey().getModel() + ":______: " +
+                    entry.getValue());
+        }
+
+
        // allCars.forEach ( System.out::println );
 
-        car1.performMaintenance(mechanicList);
+     /*   car1.performMaintenance(mechanicList);
         bus1.performMaintenance(mechanicList);
         //car1.repairCar(mechanicList);
         System.out.println("Данные о водителе автомобиля " + car1.getDriver());
         driverB1.setCategory("B");
         System.out.println("Данные о водителе автомобиля " + bus1.getDriver());
-        printMechanicList();
+        printMechanicList();*/
+
+
        // Напишите программу, с помощью которой можно узнать, как зовут водителя авто, какие механики у нее есть.
     /*    bmwI8.printDriverStartingInformation();
         ferrari488.printDriverStartingInformation();
