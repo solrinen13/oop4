@@ -14,5 +14,6 @@ public interface Competing {
     void setBestLapTime(int minutesOfBestLapTime);
 
     void setMaxSpeed(int maximumSpeed);
+    void printType();
 
 }

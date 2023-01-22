@@ -2,11 +2,16 @@ package Cars;
 
 import Drivers.DriverC;
 import Drivers.DriverD;
+import Mechanics.MechanicSkills;
+import Mechanics.MechanicsTeam;
+
+import java.util.List;
 
 public class Cargo_Car<C extends DriverC> extends Autopark  {
     private C driver;
-    public Cargo_Car(String brand, String model, double engineVolume, C driver) {
-        super(brand, model, engineVolume);
+    private TruckCapacityType truckCapacityType;
+    public Cargo_Car(String brand, String model, double engineVolume, List<MechanicsTeam> mechanic, C driver) {
+        super(brand, model, engineVolume,mechanic);
         this.driver = driver;
     }
     public void printDriverStartingInformation() {
@@ -64,12 +69,88 @@ public class Cargo_Car<C extends DriverC> extends Autopark  {
     public void finishMove() {
         super.finishMove();
     }
+    public enum TruckCapacityType {
 
+        N1(0, 3.5f),
+        N2(3.5f, 12),
+        N3(12, 0);
+        private final float lowerLimit;
+        private final float upperLimit;
+        TruckCapacityType(float lowerLimit, float upperLimit) {
+            if (lowerLimit >= 0 && upperLimit >= 0) {
+                this.lowerLimit = lowerLimit;
+                this.upperLimit = upperLimit;
+            } else {
+                throw new IllegalArgumentException("Limits should be positive");
+            }
+        }
+        public float getLowerLimit() {
+            return lowerLimit;
+        }
+
+        public float getUpperLimit() {
+            return upperLimit;
+        }
+        @Override
+        public String toString() {
+            if (lowerLimit == 0) {
+                return "Грузоподъемность: до " + getUpperLimit() + " тонн";
+            } else if (upperLimit == 0) {
+                return "Грузоподъемность: свыше " + getLowerLimit() + " тонн";
+            } else {
+                return "Грузоподъемность: от " + getLowerLimit() + " до " + getUpperLimit() + " тонн";
+            }
+        }
+    }
+
+    public TruckCapacityType getTruckCapacityType() {
+        return truckCapacityType;
+    }
+
+    public void setTruckCapacityType(TruckCapacityType truckCapacityType) {
+        this.truckCapacityType = truckCapacityType;
+    }
+    @Override
+    public void printType() {
+        if (truckCapacityType == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println("Тип транспортного средства: " + getTruckCapacityType().name() + " (" + getTruckCapacityType().toString() + ")");
+        }
+    }
     @Override
     public String toString() {
         return
                 "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume;
+                        ", model='" + model + '\'' +
+                        ", engineVolume=" + engineVolume;
+    }
+
+    @Override
+    public void passDiagnostics() {
+        super.passDiagnostics();
+    }
+
+
+
+    @Override
+    public void performMaintenance(List<MechanicsTeam> mechanics) {
+        System.out.println("Грузовик " + getBrand() + " " + getModel() + ", объем двигателя " + getEngineVolume());
+        for (MechanicsTeam value : mechanics) {
+            if (value.getMechanicSkills() == MechanicSkills.REPAIR_TRUCK || value.getAbilityToWorkCars() == MechanicSkills.REPAIR_UNIVERSAL) {
+                System.out.println("- обслуживает " + value);
+            }
+        }
+
+    }
+
+    @Override
+    public void repairCar(List<MechanicsTeam> mechanics) {
+        System.out.println("Грузовик " + getBrand() + " " + getModel() + ", объем двигателя " + getEngineVolume());
+        for (MechanicsTeam value : mechanics) {
+            if (value.getMechanicSkills() == MechanicSkills.REPAIR_TRUCK || value.getAbilityToWorkCars() == MechanicSkills.REPAIR_UNIVERSAL) {
+                System.out.println("- отремонтировал " + value);
+            }
+        }
     }
 }
