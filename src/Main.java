@@ -8,10 +8,7 @@ import Mechanics.MechanicsTeam;
 
 
 import java.sql.Driver;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static Cars.Autopark.*;
 
@@ -45,7 +42,7 @@ public class Main {
         DriverD driverD1 = new DriverD("Vasiliy Erhov", true, 8);
         DriverD driverD2 = new DriverD("Romul Smith", true, 9);
         DriverD driverD3 = new DriverD("Todd Coward", true, 5);
-        DriverD driverD4 = new DriverD("Vadim Smirnov", true, 14);
+        DriverD driverD4 = new DriverD("Todd Coward", true, 5);
 
         driverList.add(driverB1);
         driverList.add(driverB2);
@@ -61,6 +58,28 @@ public class Main {
         driverList.add(driverD2);
         driverList.add(driverD3);
         driverList.add(driverD4);
+
+        Set<DriverAllGroup> drivers = new HashSet<>();
+        drivers.add(driverB1);
+        drivers.add(driverB2);
+        drivers.add(driverB3);
+        drivers.add(driverB4);
+
+        drivers.add(driverC1);
+        drivers.add(driverC2);
+        drivers.add(driverC3);
+        drivers.add(driverC4);
+
+        drivers.add(driverD1);
+        drivers.add(driverD2);
+        drivers.add(driverD3);
+        drivers.add(driverD4);
+
+        Iterator<DriverAllGroup> iterator = drivers.iterator();
+
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
 
 
         //почему не выводит значение?
@@ -106,13 +125,13 @@ public class Main {
         mechanicMap.put(cargo2,mechanic3);
         mechanicMap.put(cargo3,mechanic3);
         mechanicMap.put(cargo4,mechanic1);
-        mechanicMap.put(cargo1,mechanic1);
+
 
         //System.out.println(mechanicMap.get(cargo1));
-        for (Map.Entry<Autopark, MechanicsTeam> entry : mechanicMap.entrySet()) {
+    /*    for (Map.Entry<Autopark, MechanicsTeam> entry : mechanicMap.entrySet()) {
             System.out.println(entry.getKey().getBrand() + " " + entry.getKey().getModel() + ":______: " +
                     entry.getValue());
-        }
+        }*/
 
 
        // allCars.forEach ( System.out::println );
