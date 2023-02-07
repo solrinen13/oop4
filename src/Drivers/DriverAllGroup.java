@@ -2,6 +2,8 @@ package Drivers;
 
 import Cars.DriverLicenseException;
 
+import java.util.Objects;
+
 public class DriverAllGroup {
     private final String fullName;
     private boolean driverLicense;
@@ -68,6 +70,19 @@ public class DriverAllGroup {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DriverAllGroup that = (DriverAllGroup) o;
+        return driverLicense == that.driverLicense && workExperience == that.workExperience && Objects.equals(fullName, that.fullName) && Objects.equals(category, that.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, driverLicense, workExperience, category);
     }
 
     @Override
